@@ -9,7 +9,8 @@ const CollectionScreen = () => {
             <Image style={{
                 width: 350,
                 height: 300
-            }}>
+            }}
+            source = {require('./image/dog.png')}>
             </Image>
 
             <Text>
