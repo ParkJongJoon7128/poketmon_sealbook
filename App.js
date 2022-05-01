@@ -1,5 +1,5 @@
 import { React } from 'react';
-import { StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import MainScreen from './screen/MainScreen'
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
 }
 
 const styles = StyleSheet.create({
-  
+
 });
 
 export default App;
