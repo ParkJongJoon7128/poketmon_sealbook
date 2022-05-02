@@ -4,6 +4,7 @@ import { Camera } from 'expo-camera';
 
 const CameraScreen = () => {
 
+
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
 
@@ -21,14 +22,24 @@ const CameraScreen = () => {
         return <Text>No access to camera</Text>;
     }
 
+    // const takePicture = () => {
+    //     if (this.camera) {
+    //         this.camera.takePictureAsync({ onPictureSaved: this.onPictureSaved });
+    //     }
+    // };
+
+    // const onPictureSaved = photo => {
+    //     console.log(photo);
+    // }
+
     return (
 
         <View style={styles.container}>
-            <Camera style={styles.camera} 
-                    type={type}
-                    ref={(r) => {
-                        camera = r
-                    }}>
+            <Camera style={styles.camera}
+                type={type}
+                ref={(r) => {
+                    camera = r
+                }}>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         style={styles.button}
@@ -41,6 +52,9 @@ const CameraScreen = () => {
                         }}
                     >
                         <Text style={styles.text}> Flip </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={this.takePicture}>
+                        <Text style={styles.text}> Shot </Text>
                     </TouchableOpacity>
                 </View>
             </Camera>
@@ -56,15 +70,10 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     buttonContainer: {
-        flex: 1,
-        backgroundColor: 'transparent',
         flexDirection: 'row',
-        margin: 20,
-    },
-    button: {
-        flex: 0.1,
-        alignSelf: 'flex-end',
-        alignItems: 'center',
+        backgroundColor: 'transparent',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
     },
     text: {
         fontSize: 18,
