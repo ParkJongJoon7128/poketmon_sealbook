@@ -1,5 +1,5 @@
 import { React } from 'react';
-import { StyleSheet, SafeAreaView, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
 // import Buttons from '../components/Buttons';
 
 function MainScreen({ navigation }) {
@@ -8,10 +8,18 @@ function MainScreen({ navigation }) {
         <SafeAreaView style={styles.full}>
             <View style={styles.view1} />
             <View style={styles.view2}>
-            <TouchableOpacity title="사진 찍기" style={styles.Button} 
-                        onPress={ () => navigation.navigate('CameraScreen')}/>
-                <TouchableOpacity title="수집품 보러가기" style={styles.Button} 
-                        onPress={ () => navigation.navigate('moveCollection')}/>
+                <TouchableOpacity style={styles.Button}
+                    onPress={() => navigation.navigate('CameraScreen')} >
+                    <Text>
+                        사진 찍기
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.Button}
+                    onPress={() => navigation.navigate('CollectionScreen')} >
+                    <Text>
+                        수집품 보러가기
+                    </Text>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     );
@@ -26,13 +34,17 @@ const styles = StyleSheet.create({
     },
     view2: {
         flex: 2,
-    },
-    Button: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 10,
-        borderRadius: 20
+    },
+    Button: {
+        width: 300,
+        height: 45,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 26,
+        borderRadius: 15,
+        backgroundColor: "#67CBF8",
     }
 });
 

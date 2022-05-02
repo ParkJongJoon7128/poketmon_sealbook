@@ -1,6 +1,5 @@
 import { React } from 'react';
-import { StyleSheet } from 'react-native';
-import { View } from 'react-native-web';
+import { StyleSheet, Image, Text, TouchableOpacity, View } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
 const CollectionScreen = () => {
@@ -10,7 +9,7 @@ const CollectionScreen = () => {
                 width: 350,
                 height: 300
             }}
-            source = {require('../image/dog.png')}>
+                source={require('../image/dog.png')}>
             </Image>
 
             <Text>
@@ -25,7 +24,11 @@ const CollectionScreen = () => {
                 ]}
             </RNPickerSelect>
 
-            <Button title="사진 저장" />
+            <TouchableOpacity>
+                <Text>
+                    사진 저장
+                </Text>
+            </TouchableOpacity>
         </View>
     );
 }

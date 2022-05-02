@@ -14,6 +14,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="MainScreen">
+        <Stack.Screen name="MainScreen" component={MainScreen} />
         <Stack.Screen name="CameraScreen" component={CameraScreen} />
         <Stack.Screen name="CollectionScreen" component={CollectionScreen} />
       </Stack.Navigator>
