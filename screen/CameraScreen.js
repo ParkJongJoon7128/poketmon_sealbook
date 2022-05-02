@@ -24,7 +24,11 @@ const CameraScreen = () => {
     return (
 
         <View style={styles.container}>
-            <Camera style={styles.camera} type={type}>
+            <Camera style={styles.camera} 
+                    type={type}
+                    ref={(r) => {
+                        camera = r
+                    }}>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         style={styles.button}
