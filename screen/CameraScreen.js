@@ -41,21 +41,26 @@ const CameraScreen = () => {
                     camera = r
                 }}>
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={() => {
-                            setType(
-                                type === Camera.Constants.Type.back
-                                    ? Camera.Constants.Type.front
-                                    : Camera.Constants.Type.back
-                            );
-                        }}
-                    >
-                        <Text style={styles.text}> Flip </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={this.takePicture}>
-                        <Text style={styles.text}> Shot </Text>
-                    </TouchableOpacity>
+                    <View style={styles.flip}>
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() => {
+                                setType(
+                                    type === Camera.Constants.Type.back
+                                        ? Camera.Constants.Type.front
+                                        : Camera.Constants.Type.back
+                                );
+                            }}
+                        >
+                            <Text style={styles.text}> Flip </Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.Shot}>
+                        <TouchableOpacity style={styles.button} onPress={this.takePicture}>
+                            <Text style={styles.text}> Shot </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </Camera>
         </View>
@@ -69,11 +74,16 @@ const styles = StyleSheet.create({
     camera: {
         flex: 1,
     },
+    flip:{ 
+    },
+    Shot:{
+    },
     buttonContainer: {
         flexDirection: 'row',
-        backgroundColor: 'transparent',
+        backgroundColor: 'red',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
+        // marginTop:550,
     },
     text: {
         fontSize: 18,
