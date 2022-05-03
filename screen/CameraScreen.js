@@ -21,6 +21,19 @@ const CameraScreen = () => {
         return <Text>No access to camera</Text>;
     }
 
+<<<<<<< HEAD
+=======
+    const takePicture = () => {
+        if (Camera) {
+            Camera.takePictureAsync().then(onPictureSaved);
+        }
+    };
+
+    const onPictureSaved = ({ uri, width, height, exif, base64 }) => {
+        console.log(uri);
+    }
+
+>>>>>>> 7c8a88c19a2e40a3d8c53462e5254bb9a053bc97
     return (
 
         <View style={styles.container}>
