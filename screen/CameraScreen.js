@@ -4,7 +4,6 @@ import { Camera } from 'expo-camera';
 
 const CameraScreen = () => {
 
-
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
 
@@ -22,24 +21,11 @@ const CameraScreen = () => {
         return <Text>No access to camera</Text>;
     }
 
-    const takePicture = () => {
-        if (Camera) {
-            Camera.takePictureAsync({ onPictureSaved: onPictureSaved });
-        }
-    };
-
-    const onPictureSaved = photo => {
-        console.log(photo);
-    }
-
     return (
 
         <View style={styles.container}>
             <Camera style={styles.camera}
-                type={type}
-                ref={(r) => {
-                    camera = r
-                }}>
+                type={type}>
                 <View style={styles.buttonContainer}>
                     <View style={styles.flip}>
                         <TouchableOpacity
@@ -57,7 +43,7 @@ const CameraScreen = () => {
                     </View>
 
                     <View style={styles.Shot}>
-                        <TouchableOpacity style={styles.button} onPress={takePicture}>
+                        <TouchableOpacity style={styles.button} >
                             <Text style={styles.text}> Shot </Text>
                         </TouchableOpacity>
                     </View>
@@ -66,7 +52,6 @@ const CameraScreen = () => {
         </View>
     );
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
