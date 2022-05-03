@@ -22,15 +22,15 @@ const CameraScreen = () => {
         return <Text>No access to camera</Text>;
     }
 
-    // const takePicture = () => {
-    //     if (this.camera) {
-    //         this.camera.takePictureAsync({ onPictureSaved: this.onPictureSaved });
-    //     }
-    // };
+    const takePicture = () => {
+        if (Camera) {
+            Camera.takePictureAsync({ onPictureSaved: onPictureSaved });
+        }
+    };
 
-    // const onPictureSaved = photo => {
-    //     console.log(photo);
-    // }
+    const onPictureSaved = photo => {
+        console.log(photo);
+    }
 
     return (
 
@@ -57,7 +57,7 @@ const CameraScreen = () => {
                     </View>
 
                     <View style={styles.Shot}>
-                        <TouchableOpacity style={styles.button} onPress={this.takePicture}>
+                        <TouchableOpacity style={styles.button} onPress={takePicture}>
                             <Text style={styles.text}> Shot </Text>
                         </TouchableOpacity>
                     </View>
@@ -73,6 +73,10 @@ const styles = StyleSheet.create({
     },
     camera: {
         flex: 1,
+        justifyContent: 'flex-end',
+        paddingBottom: 25,
+        paddingLeft: 10,
+        paddingRight: 10
     },
     flip:{ 
     },
@@ -80,13 +84,12 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         flexDirection: 'row',
-        backgroundColor: 'red',
+        backgroundColor: 'transparent',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
-        // marginTop:550,
     },
     text: {
-        fontSize: 18,
+        fontSize: 25,
         color: 'white',
     },
 });
