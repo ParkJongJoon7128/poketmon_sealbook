@@ -24,12 +24,12 @@ const CameraScreen = () => {
 
     const takePicture = () => {
         if (Camera) {
-            Camera.takePictureAsync({ onPictureSaved: onPictureSaved });
+            Camera.takePictureAsync().then(onPictureSaved);
         }
     };
 
-    const onPictureSaved = photo => {
-        console.log(photo);
+    const onPictureSaved = ({ uri, width, height, exif, base64 }) => {
+        console.log(uri);
     }
 
     return (
