@@ -2,11 +2,14 @@ import { React } from 'react';
 import { StyleSheet, Image, Text, TouchableOpacity, View } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
-const CollectionScreen = () => {
+const CollectionScreen = (props) => {
+
+    const { post } = props;
+
     return (
         <View style={styles.View}>
             <Image style={styles.Image}
-                source={require('../image/dog.png')}>
+                source={{uri : post.dat}}>
             </Image>
 
             <Text style={styles.Text}>

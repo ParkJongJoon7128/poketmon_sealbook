@@ -1,16 +1,26 @@
-import { React, useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { React, useState, useEffect, useRef } from 'react';
+import { SafeAreaView, StyleSheet, View, Text, TouchableOpacity, Image, Alert } from 'react-native';
 import { Camera } from 'expo-camera';
+import * as MediaLibrary from 'expo-media-library';
 
 const CameraScreen = () => {
 
+    const cameraRef = useRef();
     const [hasPermission, setHasPermission] = useState(null);
+    const [hasMediaLibraryPermission, setMediaLibraryPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
+    const [image, setImage] = useState(null);
+    const [photo, setPhoto] = useState(null);
+    // const [camera, setCamera] = useState(null);
+    
+
 
     useEffect(() => {
         (async () => {
             const { status } = await Camera.requestCameraPermissionsAsync();
+            const { status2 } = await MediaLibrary.requestPermissionsAsync();
             setHasPermission(status === 'granted');
+            setMediaLibraryPermission(status2 === "granted");
         })();
     }, []);
 
@@ -21,11 +31,70 @@ const CameraScreen = () => {
         return <Text>No access to camera</Text>;
     }
 
+    /* called to take the pic*/
+    const takePicture = async () => {
+        if (cameraRef) {
+            console.log("in the pic");
+            try {
+                let options = await cameraRef.current.takePictureAsync({
+                    quality: 1,
+                    base64: true,
+                    exif: false
+                });
+                return options;
+            } catch (e) {
+                console.log(e);
+            }
+
+        }
+    }
+
+
+    // const takePicture = async () => {
+    //     const options = {
+    //         quality: 0.5,
+    //         base64: true,
+    //         exif: false
+    //     };
+    //     const newPhoto = await cameraRef.current.takePictureAsync(options).then(() => {
+    //         MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
+    //             setPhoto(data.uri);
+    //         })
+    //     });
+    // }
+
+
+    // const takePicture = async () => {
+    //     const options = {
+    //         quality: 0.5,
+    //         base64: true,
+    //         exif: false
+    //     };
+    //     const newPhoto = await cameraRef.current.takePictureAsync(options).then(onPictureSaved);
+    //     setPhoto(newPhoto);
+    // };
+
+    //     const onPictureSaved = () => {
+    // MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
+    // setPhoto(data.uri);
+    // return (
+    //     // navigation.navigate('CollectionScreen')
+    //     <SafeAreaView style={styles.container}>
+    //         <Image style={styles.preview} source={{ uri: "data:image/jpg;base64," + photo.base64 }} />
+    //         {hasMediaLibraryPermission ? <Button title="Save" onPress={savePhoto} /> : undefined}
+    //         <Button title="Discard" onPress={() => setPhoto(undefined)} />
+    //     </SafeAreaView>
+    // );
+    //     }
+    // }
+    // }
+
     return (
 
         <View style={styles.container}>
             <Camera style={styles.camera}
-                type={type}>
+                type={type}
+                ref={cameraRef}>
                 <View style={styles.buttonContainer}>
                     <View style={styles.flip}>
                         <TouchableOpacity
@@ -43,7 +112,10 @@ const CameraScreen = () => {
                     </View>
 
                     <View style={styles.Shot}>
-                        <TouchableOpacity style={styles.button} >
+                        <TouchableOpacity style={styles.button} onPress={async () => {
+                            const r = await takePicture();
+                            console.log(r.uri)
+                        }} >
                             <Text style={styles.text}> Shot </Text>
                         </TouchableOpacity>
                     </View>
@@ -52,6 +124,8 @@ const CameraScreen = () => {
         </View>
     );
 }
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -63,9 +137,9 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10
     },
-    flip:{ 
+    flip: {
     },
-    Shot:{
+    Shot: {
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -76,6 +150,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 25,
         color: 'white',
+        fontWeight: 'bold'
     },
 });
 
