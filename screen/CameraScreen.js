@@ -9,11 +9,6 @@ const CameraScreen = () => {
     const [hasPermission, setHasPermission] = useState(null);
     const [hasMediaLibraryPermission, setMediaLibraryPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
-    const [image, setImage] = useState(null);
-    const [photo, setPhoto] = useState(null);
-    // const [camera, setCamera] = useState(null);
-    
-
 
     useEffect(() => {
         (async () => {
@@ -35,59 +30,21 @@ const CameraScreen = () => {
     const takePicture = async () => {
         if (cameraRef) {
             console.log("in the pic");
+            let options = {
+                quality: 1,
+                base64: true,
+                exif: false
+            }
             try {
-                let options = await cameraRef.current.takePictureAsync({
-                    quality: 1,
-                    base64: true,
-                    exif: false
-                });
-                return options;
+                let { uri } = await cameraRef.current.takePictureAsync(options);
+                const asset = await MediaLibrary.createAssetAsync(uri);
+                console.log(asset);
+                return asset;
             } catch (e) {
                 console.log(e);
             }
-
         }
     }
-
-
-    // const takePicture = async () => {
-    //     const options = {
-    //         quality: 0.5,
-    //         base64: true,
-    //         exif: false
-    //     };
-    //     const newPhoto = await cameraRef.current.takePictureAsync(options).then(() => {
-    //         MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
-    //             setPhoto(data.uri);
-    //         })
-    //     });
-    // }
-
-
-    // const takePicture = async () => {
-    //     const options = {
-    //         quality: 0.5,
-    //         base64: true,
-    //         exif: false
-    //     };
-    //     const newPhoto = await cameraRef.current.takePictureAsync(options).then(onPictureSaved);
-    //     setPhoto(newPhoto);
-    // };
-
-    //     const onPictureSaved = () => {
-    // MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
-    // setPhoto(data.uri);
-    // return (
-    //     // navigation.navigate('CollectionScreen')
-    //     <SafeAreaView style={styles.container}>
-    //         <Image style={styles.preview} source={{ uri: "data:image/jpg;base64," + photo.base64 }} />
-    //         {hasMediaLibraryPermission ? <Button title="Save" onPress={savePhoto} /> : undefined}
-    //         <Button title="Discard" onPress={() => setPhoto(undefined)} />
-    //     </SafeAreaView>
-    // );
-    //     }
-    // }
-    // }
 
     return (
 
@@ -112,10 +69,12 @@ const CameraScreen = () => {
                     </View>
 
                     <View style={styles.Shot}>
-                        <TouchableOpacity style={styles.button} onPress={async () => {
-                            const r = await takePicture();
-                            console.log(r.uri)
-                        }} >
+                        <TouchableOpacity style={styles.button} onPress={
+                            () => {
+                                takePicture()
+                                //const r = await takePicture();
+                                //console.log(r.uri)
+                            }} >
                             <Text style={styles.text}> Shot </Text>
                         </TouchableOpacity>
                     </View>
@@ -124,7 +83,6 @@ const CameraScreen = () => {
         </View>
     );
 }
-
 
 const styles = StyleSheet.create({
     container: {
