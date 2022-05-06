@@ -1,9 +1,13 @@
 import { React, useState, useEffect, useRef } from 'react';
 import { SafeAreaView, StyleSheet, View, Text, TouchableOpacity, Image, Alert } from 'react-native';
 import { Camera } from 'expo-camera';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import MainScreen from './MainScreen'
+import CollectionScreen from "./CollectionScreen"
 import * as MediaLibrary from 'expo-media-library';
 
-const CameraScreen = () => {
+const CameraScreen = ({ navigation }) => {
 
     const cameraRef = useRef();
     const [hasPermission, setHasPermission] = useState(null);
@@ -38,6 +42,7 @@ const CameraScreen = () => {
             try {
                 let { uri } = await cameraRef.current.takePictureAsync(options);
                 const asset = await MediaLibrary.createAssetAsync(uri);
+                navigation.navigate('CollectionScreen', {uri: asset?.uri})
                 console.log(asset);
                 return asset;
             } catch (e) {

@@ -1,6 +1,9 @@
 import { React } from 'react';
 import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
-// import Buttons from '../components/Buttons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import CameraScreen from "./CameraScreen"
+import CollectionScreen from "./CollectionScreen"
 
 function MainScreen({ navigation }) {
 
