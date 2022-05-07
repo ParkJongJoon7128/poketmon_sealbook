@@ -4,7 +4,7 @@ import { Camera } from 'expo-camera';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainScreen from './MainScreen'
-import CollectionScreen from "./CollectionScreen"
+import SelectPoketmonScreen from "./SelectPoketmonScreen"
 import * as MediaLibrary from 'expo-media-library';
 
 const CameraScreen = ({ navigation }) => {
