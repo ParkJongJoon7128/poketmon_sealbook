@@ -42,7 +42,7 @@ const CameraScreen = ({ navigation }) => {
             try {
                 let { uri } = await cameraRef.current.takePictureAsync(options);
                 const asset = await MediaLibrary.createAssetAsync(uri);
-                navigation.navigate('CollectionScreen', {uri: asset?.uri})
+                navigation.navigate('SelectPoketmonScreen', {uri: asset?.uri})
                 console.log(asset);
                 return asset;
             } catch (e) {

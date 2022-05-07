@@ -6,6 +6,7 @@ import "react-native-gesture-handler";
 import MainScreen from './screen/MainScreen'
 import CameraScreen from "./screen/CameraScreen"
 import CollectionScreen from "./screen/CollectionScreen"
+import SelectPoketmonScreen from "./screen/SelectPoketmonScreen"
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ const App = () => {
         <Stack.Screen name="MainScreen" component={MainScreen} />
         <Stack.Screen name="CameraScreen" component={CameraScreen} />
         <Stack.Screen name="CollectionScreen" component={CollectionScreen} />
+        <Stack.Screen name="SelectPoketmonScreen" component={SelectPoketmonScreen} />
       </Stack.Navigator>
       {/* <MainScreen /> */}
     </NavigationContainer>

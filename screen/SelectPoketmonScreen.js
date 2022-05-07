@@ -4,6 +4,7 @@ import { NavigationContainer, useTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainScreen from './MainScreen'
 import CameraScreen from "./CameraScreen"
+import CollectionScreen from "./CollectionScreen"
 import RNPickerSelect from 'react-native-picker-select';
 
 const SelectPoketmonScreen = ({ navigation, route }) => {
@@ -28,6 +29,7 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
                 }
             })
             setData(temp);
+            navigation.navigate('CollectionScreen')
         } catch (error) {
             console.error(error);
         }
