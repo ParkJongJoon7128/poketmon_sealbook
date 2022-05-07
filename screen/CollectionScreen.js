@@ -6,9 +6,6 @@ import "react-native-gesture-handler";
 import MainScreen from './MainScreen'
 import CameraScreen from "./CameraScreen"
 
-const Stack = createStackNavigator();
-
-
 const CollectionScreen = () => {
   return (
     <View style={styles.container}>
