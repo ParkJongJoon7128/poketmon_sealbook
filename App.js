@@ -20,14 +20,8 @@ const App = () => {
         <Stack.Screen name="CollectionScreen" component={CollectionScreen} />
         <Stack.Screen name="SelectPoketmonScreen" component={SelectPoketmonScreen} />
       </Stack.Navigator>
-      {/* <MainScreen /> */}
     </NavigationContainer>
-
   );
 }
-
-const styles = StyleSheet.create({
-
-});
 
 export default App;

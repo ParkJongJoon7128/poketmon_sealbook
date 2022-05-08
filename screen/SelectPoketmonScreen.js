@@ -13,7 +13,7 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
     const [data, setData] = useState([]);
     const placeholder = "포켓몬을 지정해주세요!"
 
-    const getPokectmonsterApiAsync = async () => {
+    const getPoketmonsterApiAsync = async () => {
         try {
             const response = await fetch(
                 "https://pokeapi.co/api/v2/pokemon?limit=1126"
@@ -35,9 +35,9 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
         }
     };
 
-    useEffect(() => {
-        getPokectmonsterApiAsync();
-    }, []);
+    // useEffect(() => {
+    //     getPoketmonsterApiAsync();
+    // }, []);
 
     return (
         <View style={styles.View}>
@@ -63,7 +63,7 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
 
             <TouchableOpacity
                 style={styles.Button}
-                onPress={getPokectmonsterApiAsync}>
+                onPress={getPoketmonsterApiAsync}>
                 <Text>
                     사진 저장
                 </Text>

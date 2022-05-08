@@ -13,6 +13,32 @@ const CollectionScreen = () => {
   const placeholder = "포켓몬을 지정해주세요!"
   const [data, setData] = useState([]);
 
+  const getPoketmonsterApiAsync = async () => {
+    try {
+      const response = await fetch(
+        "https://pokeapi.co/api/v2/pokemon?limit=1126"
+      );
+      const json = await response.json();
+      const { results } = json;
+      const temp = results.map((item) => {
+        const { name } = item
+        return {
+          key: name,
+          label: name,
+          value: name
+        }
+      })
+      setData(temp);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getPoketmonsterApiAsync();
+  }, []);
+
+
   const sampleData = [
     {
       id: "1",
@@ -55,45 +81,45 @@ const CollectionScreen = () => {
     </View>
   )
 
-return (
-  <View style={styles.container}>
-    <View style={styles.selectPoketmonTitle}>
-      <Text >
-        포켓몬 종족을 지정해주세요.
-      </Text>
-    </View>
+  return (
+    <View style={styles.container}>
+      <View style={styles.selectPoketmonTitle}>
+        <Text >
+          포켓몬 종족을 지정해주세요.
+        </Text>
+      </View>
 
-    <View style={styles.selectPoketmonPicker}>
-      <RNPickerSelect
-        style={styles.PickerSelect}
-        placeholder={{
-          label: placeholder,
-        }}
-        fixAndroidTouchableBug={true}
-        useNativeAndroidPickerStyle={false}
-        onValueChange={(value) => console.log(value)}
-        items={data} />
+      <View style={styles.selectPoketmonPicker}>
+        <RNPickerSelect
+          style={styles.PickerSelect}
+          placeholder={{
+            label: placeholder,
+          }}
+          fixAndroidTouchableBug={true}
+          useNativeAndroidPickerStyle={false}
+          onValueChange={(value) => console.log(value)}
+          items={data} />
+      </View>
+      <View>
+        <FlatList
+          ListHeaderComponent={
+            <View style={styles.selectPoketmonImageCountTitle}>
+              <Text >
+
+              </Text>
+              <Text>
+                펄기아 총 개수: 32
+              </Text>
+            </View>
+          }
+          data={sampleData}
+          renderItem={renderData}
+          keyExtractor={(data) => data.id}
+          style={{ margin: 10 }}
+          numColumns={3} />
+      </View>
     </View>
-    <View>
-      <FlatList
-        ListHeaderComponent={
-          <View style={styles.selectPoketmonImageCountTitle}>
-          <Text >
-            
-          </Text>
-          <Text>
-          펄기아 총 개수: 32
-          </Text>
-          </View>
-        }
-        data={sampleData}
-        renderItem={renderData}
-        keyExtractor={(data) => data.id}
-        style={{ margin: 10 }}
-        numColumns={3} />
-    </View>
-  </View>
-);
+  );
 }
 
 const styles = StyleSheet.create({
