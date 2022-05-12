@@ -7,3 +7,10 @@
 ## 사용한 라이브러리 
 expo-camera, react-navigation, react-stack-navigator, pickerselect, MediaLibrary, Platform, Fetch, Flatlist
 
+## 지금까지 한 기록
+기본적인 컴포넌트로 UI 디자인 배치, 사진 촬영 및 갤러리에 저장 기능 및 navigation을 이용해 화면 전환 구성
+pokeapi를 이용해 pickerselect에 item을 추가함.
+
+## 해야 될 것
+1. 사진 촬영 및 저장한후 포켓몬 지정한후 데이터 저장하기
+2. collectionScreen에서 포켓몬 지정하면 저장된 데이터 불러오기(like 인스타그램 of mypage)
