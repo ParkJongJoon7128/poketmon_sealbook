@@ -15,9 +15,7 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
 
     const getPoketmonsterApiAsync = async () => {
         try {
-            const response = await fetch(
-                "https://pokeapi.co/api/v2/pokemon?limit=1126"
-            );
+            const response = require('../db/poketname-korean.json');
             const json = await response.json();
             const { results } = json;
             const temp = results.map((item) => {
@@ -29,7 +27,6 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
                 }
             })
             setData(temp);
-            navigation.navigate('CollectionScreen')
         } catch (error) {
             console.error(error);
         }
