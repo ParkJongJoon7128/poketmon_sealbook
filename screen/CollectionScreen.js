@@ -13,24 +13,20 @@ const CollectionScreen = () => {
   const placeholder = "포켓몬을 지정해주세요!"
   const [data, setData] = useState([]);
 
-  const getPoketmonsterApiAsync = async () => {
+  const getPoketmonsterApiAsync = () => {
     try {
-      const response = require('../db/poketname-korean.json');
-      const json = await response.json();
-      const { results } = json;
-      const temp = results.map((item) => {
-        const { name } = item
-        return {
-          key: name,
-          label: name,
-          value: name
-        }
-      })
-      setData(temp);
+        const response = require(`../db/poketname-korean.json`);
+        setData(response.map(item => {
+            return {
+                key: item.id,
+                label: item.name,
+                value: item.num
+            }
+        }))
     } catch (error) {
-      console.error(error);
+        console.error(error);
     }
-  };
+};
 
   useEffect(() => {
     getPoketmonsterApiAsync();
@@ -88,15 +84,15 @@ const CollectionScreen = () => {
       </View>
 
       <View style={styles.selectPoketmonPicker}>
-        <RNPickerSelect
-          style={styles.PickerSelect}
-          placeholder={{
-            label: placeholder,
-          }}
-          fixAndroidTouchableBug={true}
-          useNativeAndroidPickerStyle={false}
-          onValueChange={(value) => console.log(value)}
-          items={data} />
+      <RNPickerSelect
+                    style={styles.PickerSelect}
+                    placeholder={{
+                        label: placeholder,
+                    }}
+                    fixAndroidTouchableBug={true}
+                    useNativeAndroidPickerStyle={false}
+                    onValueChange={(value) => console.log(value)}
+                    items={data} />
       </View>
       <View>
         <FlatList

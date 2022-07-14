@@ -13,20 +13,16 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
     const [data, setData] = useState([]);
     const placeholder = "포켓몬을 지정해주세요!"
 
-    const getPoketmonsterApiAsync = async () => {
+    const getPoketmonsterApiAsync = () => {
         try {
-            const response = require('../db/poketname-korean.json');
-            const json = await response.json();
-            const { results } = json;
-            const temp = results.map((item) => {
-                const { name } = item
+            const response = require(`../db/poketname-korean.json`);
+            setData(response.map(item => {
                 return {
-                    key: name,
-                    label: name,
-                    value: name
+                    key: item.id,
+                    label: item.name,
+                    value: item.num
                 }
-            })
-            setData(temp);
+            }))
         } catch (error) {
             console.error(error);
         }
