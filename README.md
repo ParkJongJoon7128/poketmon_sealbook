@@ -8,8 +8,10 @@
 expo-camera, react-navigation, react-stack-navigator, pickerselect, MediaLibrary, Platform, Fetch, Flatlist
 
 ## 지금까지 한 기록
-기본적인 컴포넌트로 UI 디자인 배치, 사진 촬영 및 갤러리에 저장 기능 및 navigation을 이용해 화면 전환 구성
-pokeapi를 이용해 pickerselect에 item을 추가함.
+- 기본적인 컴포넌트로 UI 디자인 배치
+- 사진 촬영 및 갤러리에 저장 기능 및 navigation을 이용해 화면 전환 구성
+- pokeapi를 이용해 pickerselect에 item을 추가함. 
+    -> pokeapi 제거, poketname-korean.json 파일을 만들어 import하여 사용함.
 
 ## 해야 될 것
 1. 사진 촬영 및 저장한후 포켓몬 지정한후 데이터 저장하기

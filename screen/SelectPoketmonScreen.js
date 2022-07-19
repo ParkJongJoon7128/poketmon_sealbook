@@ -13,7 +13,7 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
     const [data, setData] = useState([]);
     const placeholder = "포켓몬을 지정해주세요!"
 
-    const getPoketmonsterApiAsync = () => {
+    const getPoketmonsterApiAsync = async () => {
         try {
             const response = require(`../db/poketname-korean.json`);
             setData(response.map(item => {
@@ -28,9 +28,9 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
         }
     };
 
-    // useEffect(() => {
-    //     getPoketmonsterApiAsync();
-    // }, []);
+    useEffect(() => {
+        getPoketmonsterApiAsync();
+    }, []);
 
     return (
         <View style={styles.View}>
@@ -56,7 +56,7 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
 
             <TouchableOpacity
                 style={styles.Button}
-                onPress={getPoketmonsterApiAsync}>
+                onPress={() => navigation.navigate('CollectionScreen')}>
                 <Text>
                     사진 저장
                 </Text>

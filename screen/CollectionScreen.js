@@ -13,7 +13,7 @@ const CollectionScreen = () => {
   const placeholder = "포켓몬을 지정해주세요!"
   const [data, setData] = useState([]);
 
-  const getPoketmonsterApiAsync = () => {
+  const getPoketmonsterApiAsync = async () => {
     try {
         const response = require(`../db/poketname-korean.json`);
         setData(response.map(item => {
