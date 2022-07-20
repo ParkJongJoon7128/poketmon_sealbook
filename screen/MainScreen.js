@@ -13,13 +13,15 @@ function MainScreen({ navigation }) {
             <View style={styles.view1} />
             <View style={styles.view2}>
                 <Buttons 
-                    onPress={() => navigation.navigate('CameraScreen')} >
+                    onPress={() => navigation.navigate('CameraScreen')} 
+                    type={1}>
                     <Text>
                         사진 찍기
                     </Text>
                 </Buttons>
                 <Buttons 
-                    onPress={() => navigation.navigate('CollectionScreen')} >
+                    onPress={() => navigation.navigate('CollectionScreen')} 
+                    type={1}>
                     <Text>
                         수집품 보러가기
                     </Text>

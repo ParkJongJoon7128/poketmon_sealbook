@@ -5,7 +5,7 @@ const Buttons = (props) => (
     <TouchableOpacity
         {...props}
         style={
-            styles ? {style : styles.Button} : {style : styles.CustomButton}
+            props.type === 1 ? styles.Button : styles.CustomButton
         }
     />
 )
