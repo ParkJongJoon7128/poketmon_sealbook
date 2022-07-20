@@ -56,7 +56,8 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
 
 
             <Buttons
-                onPress={() => navigation.navigate('CollectionScreen')}>
+                onPress={() => navigation.navigate('CollectionScreen')}
+                type={2}>
                 <Text>
                     사진 저장
                 </Text>
