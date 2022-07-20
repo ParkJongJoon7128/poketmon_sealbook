@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import CameraScreen from "./CameraScreen"
 import CollectionScreen from "./CollectionScreen"
+import Buttons from '../utils/form/Buttons';
 
 function MainScreen({ navigation }) {
 
@@ -11,18 +12,18 @@ function MainScreen({ navigation }) {
         <SafeAreaView style={styles.full}>
             <View style={styles.view1} />
             <View style={styles.view2}>
-                <TouchableOpacity style={styles.Button}
+                <Buttons 
                     onPress={() => navigation.navigate('CameraScreen')} >
                     <Text>
                         사진 찍기
                     </Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.Button}
+                </Buttons>
+                <Buttons 
                     onPress={() => navigation.navigate('CollectionScreen')} >
                     <Text>
                         수집품 보러가기
                     </Text>
-                </TouchableOpacity>
+                </Buttons>
             </View>
         </SafeAreaView>
     );

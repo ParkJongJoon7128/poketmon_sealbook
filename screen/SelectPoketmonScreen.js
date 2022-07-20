@@ -6,6 +6,7 @@ import MainScreen from './MainScreen'
 import CameraScreen from "./CameraScreen"
 import CollectionScreen from "./CollectionScreen"
 import RNPickerSelect from 'react-native-picker-select';
+import Buttons from '../utils/form/Buttons';
 
 const SelectPoketmonScreen = ({ navigation, route }) => {
 
@@ -54,13 +55,12 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
             </View>
 
 
-            <TouchableOpacity
-                style={styles.Button}
+            <Buttons
                 onPress={() => navigation.navigate('CollectionScreen')}>
                 <Text>
                     사진 저장
                 </Text>
-            </TouchableOpacity>
+            </Buttons>
         </View>
     );
 }
@@ -82,15 +82,6 @@ const styles = StyleSheet.create({
     View2: {
         marginTop: Platform.OS === 'android' ? 15 : 50,
         fontSize: 32,
-    },
-    Button: {
-        width: 300,
-        height: 45,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 15,
-        marginTop: Platform.OS === 'android' ? 15 : 65,
-        backgroundColor: "#67CBF8",
     },
     PickerSelect: {
         flex: 1,
