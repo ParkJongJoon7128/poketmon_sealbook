@@ -16,3 +16,4 @@ expo-camera, react-navigation, react-stack-navigator, pickerselect, MediaLibrary
 ## 해야 될 것
 1. 사진 촬영 및 저장한후 포켓몬 지정한후 데이터 저장하기
 2. collectionScreen에서 포켓몬 지정하면 저장된 데이터 불러오기(like 인스타그램 of mypage)
+3. 스크린 cycle 리팩토링하기(스크린 이동 경로를 확실하게 정할 필요가 있음)
