@@ -12,6 +12,7 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
 
     const { uri } = route.params;
     const [data, setData] = useState([]);
+    const [sort, setSort] = useState('');
     const placeholder = "포켓몬을 지정해주세요!"
 
     const getPoketmonsterApiAsync = async () => {
@@ -56,7 +57,8 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
 
 
             <Buttons
-                onPress={() => navigation.navigate('CollectionScreen')}
+                onPress={() => 
+                    navigation.navigate('CollectionScreen')}
                 type={2}>
                 <Text>
                     사진 저장
