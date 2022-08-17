@@ -13,6 +13,11 @@ expo-camera, react-navigation, react-stack-navigator, pickerselect, MediaLibrary
 - pokeapi를 이용해 pickerselect에 item을 추가함. <br/>
     -> pokeapi 제거, poketname-korean.json 파일을 만들어 import하여 사용함.
 
+## 프로젝트를 하면서 어려웠던 부분
+- React Native는 네이티브(Android, Ios)나 플러터(Flutter)에 비해 구글링을 하면 데이터가 많지 않아 독학을 하면서 토이 프로젝트를 진행하는데 어려움을 많이 느낌.
+- 크로스플랫폼 개발의 장점이 두개의 운영체제를 하나의 언어로 한번에 개발을 할수 있다는 장점이 있었지만, 몇몇의 모듈을 사용하는 부분에서 각 운영체제의 환경에 맞춰 개발해야되는 점 때문에 어쩔수 없이 네이티브 언어를 알아야 하는 단점이 있음.
+- Pickerselect를 이용해 item별로 사진을 정형화 했을시 item에 따라 사진을 분류시키는데 어려움을 느낌.
+
 ## 해야 될 것
 1. 사진 촬영 및 저장한후 포켓몬 지정한후 데이터 저장하기
 2. collectionScreen에서 포켓몬 지정하면 저장된 데이터 불러오기(like 인스타그램 of mypage)
