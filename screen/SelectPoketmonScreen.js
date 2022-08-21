@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { StyleSheet, Image, Text, TouchableOpacity, View, Platform, AppRegistry } from 'react-native';
+import { StyleSheet, Image, Text, TouchableOpacity, View, Platform} from 'react-native';
 import { NavigationContainer, useNavigationState, useTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';  
 import MainScreen from './MainScreen'
