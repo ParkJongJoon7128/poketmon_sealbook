@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
-import { StyleSheet, Image, Text, TouchableOpacity, View, Platform } from 'react-native';
-import { NavigationContainer, useTheme } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { StyleSheet, Image, Text, TouchableOpacity, View, Platform, AppRegistry } from 'react-native';
+import { NavigationContainer, useNavigationState, useTheme } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';  
 import MainScreen from './MainScreen'
 import CameraScreen from "./CameraScreen"
 import CollectionScreen from "./CollectionScreen"
@@ -12,7 +12,6 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
 
     const { uri } = route.params;
     const [data, setData] = useState([]);
-    const [sort, setSort] = useState('');
     const placeholder = "포켓몬을 지정해주세요!"
 
     const getPoketmonsterApiAsync = async () => {
@@ -57,8 +56,7 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
 
 
             <Buttons
-                onPress={() => 
-                    navigation.navigate('CollectionScreen')}
+                onPress={() => navigation.navigate('CollectionScreen')}
                 type={2}>
                 <Text>
                     사진 저장

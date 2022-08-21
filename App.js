@@ -1,5 +1,5 @@
 import { React } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, AppRegistry } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import "react-native-gesture-handler";
@@ -10,6 +10,7 @@ import SelectPoketmonScreen from "./screen/SelectPoketmonScreen"
 
 const Stack = createStackNavigator();
 
+AppRegistry.registerComponent("main", () => App);
 
 const App = () => {
   return (
