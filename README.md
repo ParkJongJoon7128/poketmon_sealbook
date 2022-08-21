@@ -5,7 +5,7 @@
 2022년 2월 부터 삼립식품계열에서 포켓몬스터 빵을 재판매 한다는 소식과 함께 많은 사람들은 포켓몬스터의 빵을 사들이기 시작했습니다. 특히 빵 맛의 그리움 때문에 찾는 부분도 있지만 빵을 구매하면 물품 안에 있는 빵과 같이 있는 포켓몬스터 씰 때문에 다시 인기를 불러 들어왔습니다. 사람들이 씰을 많이 모으는데, 이 씰을 잃어버리지 않고 특히 씰 같은 경우 스티커 이다 보니 떨어져 나갈수도 있어 잘 보관하여 기억할수 있게 기획한 토이 프로젝트 입니다.
 
 ## 프로젝트 도안
-![pocketmon-seal-design](image\aaa.png)
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fc6CMLWZhPfDlsxgRD1hVaC%2Fpocketmon-seal%3Fnode-id%3D0%253A1" allowfullscreen></iframe>
 
 ## 사용한 라이브러리 
 expo-camera, react-navigation, react-stack-navigator, pickerselect, MediaLibrary, Platform, Fetch, Flatlist
