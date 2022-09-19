@@ -2,16 +2,23 @@ import { React, useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { database } from '../firestoreconfig';
 import "react-native-gesture-handler";
-import MainScreen from './MainScreen'
-import CameraScreen from "./CameraScreen"
-import SelectPoketmonScreen from "./SelectPoketmonScreen"
+import MainScreen from './MainScreen';
+import CameraScreen from "./CameraScreen";
+import SelectPoketmonScreen from "./SelectPoketmonScreen";
 import RNPickerSelect from 'react-native-picker-select';
+
 
 const CollectionScreen = () => {
 
   const placeholder = "포켓몬을 지정해주세요!"
   const [data, setData] = useState([]);
+
+  // const test = async () => {
+  //   const result = await axios.get("http://127.0.0.1:3000/");
+  //   console.log(result);
+  // }
 
   const getPoketmonsterApiAsync = async () => {
     try {
@@ -28,8 +35,26 @@ const CollectionScreen = () => {
     }
 };
 
+// Import {db} form “파베컨피그 어쩌구 파일”
+// import { collection, getDocs } from "firebase/firestore";
+
+// const querySnapshot = await getDocs(collection(db, “아까 미리 만들어둔 스토어 최상단 경로? ”));
+
+//   console.log(querySnapshot);
+
+
+// 문서 원본 = 
+
+// import { collection, getDocs } from "firebase/firestore";
+
+// const querySnapshot = await getDocs(collection(db, "users"));
+// querySnapshot.forEach((doc) => {
+//   console.log(`${doc.id} => ${doc.data()}`);
+// });
+
   useEffect(() => {
     getPoketmonsterApiAsync();
+    // test();
   }, []);
 
 

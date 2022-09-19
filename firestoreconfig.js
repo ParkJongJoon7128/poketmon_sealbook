@@ -1,5 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore} from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
+// Follow this pattern to import other Firebase services
+// import { } from 'firebase/<service>';
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
@@ -12,6 +14,5 @@ const firebaseConfig = {
     measurementId: "G-6PSD65VJS0"
 };
 
-export const app = initializeApp(firebaseConfig);
-//MARK : Firestore Reference
-export const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+export const database = getFirestore(app);

@@ -1,7 +1,9 @@
 import { React, useState, useEffect } from 'react';
-import { StyleSheet, Image, Text, TouchableOpacity, View, Platform} from 'react-native';
+import { StyleSheet, Image, Text, TouchableOpacity, View, Platform } from 'react-native';
 import { NavigationContainer, useNavigationState, useTheme } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';  
+import { createStackNavigator } from '@react-navigation/stack';
+import { database } from '../firestoreconfig';
+import { collection, addDoc } from "firebase/firestore";
 import MainScreen from './MainScreen'
 import CameraScreen from "./CameraScreen"
 import CollectionScreen from "./CollectionScreen"
@@ -12,6 +14,11 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
 
     const { uri } = route.params;
     const [data, setData] = useState([]);
+    const [newPoketmonData, setPoketmonData] = useState({
+        uri: '',
+        id: '',
+        name: ''
+    });
     const placeholder = "포켓몬을 지정해주세요!"
 
     const getPoketmonsterApiAsync = async () => {
@@ -29,6 +36,16 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
         }
     };
 
+    const savePoketmon = async () => {
+        try {
+            const docRef = await addDoc(collection(db, "pocketmon-category"), {
+                ...newPoketmonData
+            });
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    }
     useEffect(() => {
         getPoketmonsterApiAsync();
     }, []);
@@ -56,7 +73,7 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
 
 
             <Buttons
-                onPress={() => navigation.navigate('CollectionScreen')}
+                onPress={() => savePoketmon().then(navigation.navigate('CollectionScreen'))}
                 type={2}>
                 <Text>
                     사진 저장
