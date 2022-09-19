@@ -35,8 +35,5 @@
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },
-  "projectConfig": {
-    "backendApiBaseUrl": "39.125.205.190"
-  },
   "private": true
 }
