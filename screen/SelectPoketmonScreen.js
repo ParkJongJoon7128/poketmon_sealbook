@@ -49,8 +49,6 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
   const savePoketmon = async () => {
     try {
       const result = {...data[data.findIndex((item)=> item.value === selectData)]};
-      console.log("================");
-      console.log(result);
       const docRef = await addDoc(collection(database, "pocketmon-category"), {
           id : result.key, // 포켓몬 고유의 pk값
           name : result.label, // 포켓몬 이름
