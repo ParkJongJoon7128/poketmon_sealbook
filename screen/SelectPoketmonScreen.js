@@ -52,9 +52,9 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
       console.log("================");
       console.log(result);
       const docRef = await addDoc(collection(database, "pocketmon-category"), {
-          id : result.key,
-          name : result.label,
-          uri: uri
+          id : result.key, // 포켓몬 고유의 pk값
+          name : result.label, // 포켓몬 이름
+          uri: uri // 사진 uri
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
