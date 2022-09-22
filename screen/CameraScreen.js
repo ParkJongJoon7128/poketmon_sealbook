@@ -77,8 +77,6 @@ const CameraScreen = ({ navigation }) => {
                         <TouchableOpacity style={styles.button} onPress={
                             () => {
                                 takePicture()
-                                //const r = await takePicture();
-                                //console.log(r.uri)
                             }} >
                             <Text style={styles.text}> Shot </Text>
                         </TouchableOpacity>
