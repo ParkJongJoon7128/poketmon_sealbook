@@ -24,12 +24,8 @@ import Buttons from "../utils/form/Buttons";
 const SelectPoketmonScreen = ({ navigation, route }) => {
   const { uri } = route.params;
   const [data, setData] = useState([]);
-  // const [newPoketmonData, setPoketmonData] = useState({
-  //     uri: '',
-  //     id: '',
-  //     name: ''
-  // });
-  const pocketmonInfo = useRef();
+  const [selectData, setSelectData] = useState([]);
+  // const pocketmonInfo = useRef();
   const placeholder = "포켓몬을 지정해주세요!";
 
   const getPoketmonsterApiAsync = async () => {
@@ -52,10 +48,13 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
   //firestore로 사진과 포켓몬 데이터 보내고 저장하기
   const savePoketmon = async () => {
     try {
+      const result = {...data[data.findIndex((item)=> item.value === selectData)]};
+      console.log("================");
+      console.log(result);
       const docRef = await addDoc(collection(database, "pocketmon-category"), {
-        id: getPoketmonsterApiAsync.key, // 각 포켓몬 고유값(key)
-        name: getPoketmonsterApiAsync.label, // 각 포켓몬 이름(label)
-        uri: uri, // 사진 uri(uri)
+          id : result.key,
+          name : result.label,
+          uri: uri
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
@@ -80,7 +79,7 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
           }}
           fixAndroidTouchableBug={true}
           useNativeAndroidPickerStyle={false}
-          onValueChange={(value) => console.log(value)}
+          onValueChange={(key) => setSelectData(key)}
           items={data}
         />
       </View>
