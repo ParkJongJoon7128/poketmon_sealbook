@@ -10,12 +10,13 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { database } from "../firestoreconfig";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, where, query } from "firebase/firestore";
 import "react-native-gesture-handler";
 import MainScreen from "./MainScreen";
 import CameraScreen from "./CameraScreen";
 import SelectPoketmonScreen from "./SelectPoketmonScreen";
 import RNPickerSelect from "react-native-picker-select";
+import Buttons from "../utils/form/Buttons";
 
 const CollectionScreen = () => {
   const placeholder = "포켓몬을 지정해주세요!";
@@ -38,21 +39,37 @@ const CollectionScreen = () => {
     }
   };
 
-  // const querySnapshot = await getDocs(collection(db, “아까 미리 만들어둔 스토어 최상단 경로? ”));
+  //firestore로 사진과 포켓몬 데이터 보내고 저장하기
+  const savePoketmon = async () => {
+    // try {
+    //   const result = {
+    //     ...data[data.findIndex((item) => item.value === selectData)],
+    //   };
+    //   const docRef = await getDocs(collection(database, "pocketmon-category")
+    //                         .where("id" == result.key), {
+    //                           sampleData.src(uri)
+    //                         }
+    //   // ,{
+    //   //   id: result.key, // 포켓몬 고유의 pk값
+    //   //   name: result.label, // 포켓몬 이름
+    //   //   uri: uri, // 사진 uri
+    //   // });
+    //   console.log("Document written with ID: ", docRef.id);
+    // } catch (e) {
+    //   console.error("Error adding document: ", e);
+    const docRef = collection(database, "pocketmon-category");
 
-  //   console.log(querySnapshot);
+    try {
+      const result = {
+          ...data[data.findIndex((item) => item.value === selectData)]};
+      const test = query(docRef, where("id", "==", result.key))
 
-  // 문서 원본 =
+    } 
+    catch (error) {
+      
+    }
 
-  // import { collection, getDocs } from "firebase/firestore";
-
-  const querySnapshot = async () => {
-    await getDocs(collection(db, "users"));
-  }
-  
-  querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`);
-  });
+    };
 
   useEffect(() => {
     getPoketmonsterApiAsync();
@@ -115,6 +132,13 @@ const CollectionScreen = () => {
           items={data}
         />
       </View>
+
+      <View style={styles.buttonsStyle}>
+        <Buttons onPress={() => showPocketmon} type={2}>
+          <Text>포켓몬 선택</Text>
+        </Buttons>
+      </View>
+
       <View>
         <FlatList
           ListHeaderComponent={
@@ -161,6 +185,10 @@ const styles = StyleSheet.create({
   tinyImage: {
     width: 100,
     height: 100,
+  },
+  buttonsStyle: {
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
