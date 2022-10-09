@@ -25,7 +25,6 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
   const { uri } = route.params;
   const [data, setData] = useState([]);
   const [selectData, setSelectData] = useState([]);
-  // const pocketmonInfo = useRef();
   const placeholder = "포켓몬을 지정해주세요!";
 
   const getPoketmonsterApiAsync = async () => {
@@ -48,11 +47,13 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
   //firestore로 사진과 포켓몬 데이터 보내고 저장하기
   const savePoketmon = async () => {
     try {
-      const result = {...data[data.findIndex((item)=> item.value === selectData)]};
+      const result = {
+        ...data[data.findIndex((item) => item.value === selectData)],
+      };
       const docRef = await addDoc(collection(database, "pocketmon-category"), {
-          id : result.key, // 포켓몬 고유의 pk값
-          name : result.label, // 포켓몬 이름
-          uri: uri // 사진 uri
+        id: result.key, // 포켓몬 고유의 pk값
+        name: result.label, // 포켓몬 이름
+        uri: uri, // 사진 uri
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {

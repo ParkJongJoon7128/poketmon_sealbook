@@ -10,7 +10,7 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { database } from "../firestoreconfig";
-import { collection, getDocs, where, query } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import "react-native-gesture-handler";
 import MainScreen from "./MainScreen";
 import CameraScreen from "./CameraScreen";
@@ -39,37 +39,19 @@ const CollectionScreen = () => {
     }
   };
 
-  //firestore로 사진과 포켓몬 데이터 보내고 저장하기
+  //firestore로 사진과 포켓몬 데이터 읽어오기
   const savePoketmon = async () => {
-    // try {
-    //   const result = {
-    //     ...data[data.findIndex((item) => item.value === selectData)],
-    //   };
-    //   const docRef = await getDocs(collection(database, "pocketmon-category")
-    //                         .where("id" == result.key), {
-    //                           sampleData.src(uri)
-    //                         }
-    //   // ,{
-    //   //   id: result.key, // 포켓몬 고유의 pk값
-    //   //   name: result.label, // 포켓몬 이름
-    //   //   uri: uri, // 사진 uri
-    //   // });
-    //   console.log("Document written with ID: ", docRef.id);
-    // } catch (e) {
-    //   console.error("Error adding document: ", e);
     const docRef = collection(database, "pocketmon-category");
-
-    try {
+    const batch = database.batch();
+      try {
       const result = {
-          ...data[data.findIndex((item) => item.value === selectData)]};
-      const test = query(docRef, where("id", "==", result.key))
+        ...data[data.findIndex((item) => item.value === selectData)],
+      };
+      const test = query(docRef, where("id", "==", result.key));
+    } catch (error) {
 
-    } 
-    catch (error) {
-      
     }
-
-    };
+  };
 
   useEffect(() => {
     getPoketmonsterApiAsync();
