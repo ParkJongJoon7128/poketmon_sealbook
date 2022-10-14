@@ -10,7 +10,7 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { database } from "../firestoreconfig";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import "react-native-gesture-handler";
 import MainScreen from "./MainScreen";
 import CameraScreen from "./CameraScreen";
@@ -40,20 +40,18 @@ const CollectionScreen = () => {
     }
   };
 
-  //firestore로 사진과 포켓몬 데이터 읽어오기
+  //firestore로 사진과 포켓몬 데이터 가져오기
   const showPoketmon = async () => {
     try {
       const result = {
-        ...data[data.findIndex((item) => item.value === selectData)],
-      };
-      const q = query(
-        collection(database, "pocketmon-category"), where("id", "==", result.key))
-        .getDocs()
-        .then((querySnapshout) => {
-          querySnapshout.forEach((p) => {
-            console.log(p.id, ":", p.id());
-          });
-        });
+        ...data[data.findIndex((item) => item.value === selectData)]};
+      const q = query(collection(database, "pocketmon-category"), where("id", "==", result.key));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.data().uri);
+        [sampleData.src] = doc.data().uri;
+      });
+
     } catch (error) {
       console.log(error);
     }
