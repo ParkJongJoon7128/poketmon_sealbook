@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getStorage, ref } from "firebase/storage";
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 
@@ -7,6 +8,7 @@ import { getFirestore } from 'firebase/firestore';
 const firebaseConfig = {
     apiKey: "AIzaSyDBKvUOXsrVuiaUJQ4ISv76aQrtLAbxM0k",
     authDomain: "pocketmon-seal-db.firebaseapp.com",
+    databaseURL: 'pocketmon-seal-db.firebaseio.com',
     projectId: "pocketmon-seal-db",
     storageBucket: "pocketmon-seal-db.appspot.com",
     messagingSenderId: "364665277608",
@@ -16,3 +18,4 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const database = getFirestore(app);
+export const storage = getStorage(app);

@@ -49,43 +49,14 @@ const CollectionScreen = () => {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         // console.log(doc.data().uri);
-        [sampleData.src] = doc.data().uri;
+        console.log(doc);
+        sampleData.src = doc.data().uri
       });
 
     } catch (error) {
       console.log(error);
     }
   };
-
-  // //firestore로 사진과 포켓몬 데이터 보내고 저장하기
-  // const savePoketmon = async () => {
-  //   try {
-  //     const result = {
-  //       ...data[data.findIndex((item) => item.value === selectData)],
-  //     };
-  //     const docRef = await addDoc(collection(database, "pocketmon-category"), {
-  //       id: result.key, // 포켓몬 고유의 pk값
-  //       name: result.label, // 포켓몬 이름
-  //       uri: uri, // 사진 uri
-  //     });
-  //     console.log("Document written with ID: ", docRef.id);
-  //   } catch (e) {
-  //     console.error("Error adding document: ", e);
-  //   }
-  // };
-
-  // //firestore로 사진과 포켓몬 데이터 읽어오기
-  // const savePoketmon = async () => {
-  //   const docRef = collection(database, "pocketmon-category");
-  //     try {
-  //     const result = {
-  //       ...data[data.findIndex((item) => item.value === selectData)],
-  //     };
-  //     const test = query(docRef, where("id", "==", result.key));
-  //   } catch (error) {
-
-  //   }
-  // };
 
   useEffect(() => {
     getPoketmonsterApiAsync();

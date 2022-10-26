@@ -1,11 +1,12 @@
 import { React, useState, useEffect, useRef } from 'react';
 import { SafeAreaView, StyleSheet, View, Text, TouchableOpacity, Image, Alert } from 'react-native';
-import { Camera } from 'expo-camera';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Camera } from 'expo-camera';
+import * as MediaLibrary from 'expo-media-library';
 import MainScreen from './MainScreen'
 import SelectPoketmonScreen from "./SelectPoketmonScreen"
-import * as MediaLibrary from 'expo-media-library';
+
 
 const CameraScreen = ({ navigation }) => {
 

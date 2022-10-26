@@ -13,13 +13,15 @@ import {
   useTheme,
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { database } from "../firestoreconfig";
+import { database, storage } from "../firestoreconfig";
 import { collection, addDoc } from "firebase/firestore";
 import MainScreen from "./MainScreen";
 import CameraScreen from "./CameraScreen";
 import CollectionScreen from "./CollectionScreen";
 import RNPickerSelect from "react-native-picker-select";
 import Buttons from "../utils/form/Buttons";
+import { ref, uploadBytes } from "firebase/storage";
+
 
 const SelectPoketmonScreen = ({ navigation, route }) => {
   const { uri } = route.params;
@@ -44,11 +46,12 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
     }
   };
 
-  //firestore로 사진과 포켓몬 데이터 보내고 저장하기
+  //firestore로 포켓몬 데이터 보내고 저장하기
   const savePoketmon = async () => {
     try {
       const result = {
-        ...data[data.findIndex((item) => item.value === selectData)]};
+        ...data[data.findIndex((item) => item.value === selectData)],
+      };
       const docRef = await addDoc(collection(database, "pocketmon-category"), {
         id: result.key, // 포켓몬 고유의 pk값
         name: result.label, // 포켓몬 이름
@@ -59,6 +62,57 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
       console.error("Error adding document: ", e);
     }
   };
+
+  //firebase storage로 포켓몬 사진 보내고 저장하기 - 1번째 예시
+  // const uploadImageAsync = async(uri) => {
+  //   const blob = await new Promise((resolve, reject) => {
+  //     const xhr = new XMLHttpRequest();
+  //     xhr.onload = function () {
+  //       resolve(xhr.response);
+  //     };
+  //     xhr.onerror = function (e) {
+  //       console.log(e);
+  //       reject(new TypeError("Network request failed"));
+  //     };
+  //     xhr.responseType = "blob";
+  //     xhr.open("GET", uri, true);
+  //     xhr.send(null);
+  //   });
+
+  //   const ref = storage().ref().child(new Date().toISOString());
+  //   const snapshot = ref.put(blob);
+  //   blob.close();
+  // }
+
+  // const uploadImage = async (uri) => {
+  //   const storageRef = ref(storage, uri);
+
+  //   try {
+  //     await uploadBytes(storageRef, file, {
+  //       contentType: "image/jpeg",
+  //     });
+  //     console.log("Succuess!!")
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+//firebase storage로 포켓몬 사진 보내고 저장하기 - 2번째 예시
+//   const uploadImage = async (uri) => {
+//     const response = await fetch(uri);
+//     const blob = await response.blob();
+//     const filename = 'photo.jpg'
+//     //image.uri.substring(image.uri.lastIndexOf('/')+1);
+//     var ref = storage().ref().child(filename).put(blob);
+//     try {
+//         await ref;
+//     } catch (e) {
+//         console.log(e);
+//     }
+//     console.log("Success!");
+//     console.log(filename);
+// };
+
 
   useEffect(() => {
     getPoketmonsterApiAsync();
@@ -84,7 +138,7 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
 
       <Buttons
         onPress={() =>
-          savePoketmon().then(navigation.navigate("CollectionScreen"))
+          savePoketmon().then(uploadImage(uri).then(navigation.navigate("CollectionScreen")))
         }
         type={2}
       >

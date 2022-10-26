@@ -18,8 +18,8 @@ const App = () => {
       <Stack.Navigator initialRouteName="MainScreen">
         <Stack.Screen name="MainScreen" component={MainScreen} />
         <Stack.Screen name="CameraScreen" component={CameraScreen} />
-        <Stack.Screen name="CollectionScreen" component={CollectionScreen} />
-        <Stack.Screen name="SelectPoketmonScreen" component={SelectPoketmonScreen} />
+        <Stack.Screen name="CollectionScreen" component={CollectionScreen} options={{title: '포켓몬 수집함'}}/>
+        <Stack.Screen name="SelectPoketmonScreen" component={SelectPoketmonScreen} options={{title: '포켓몬 선택하기'}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
