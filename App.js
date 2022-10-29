@@ -16,8 +16,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="MainScreen">
-        <Stack.Screen name="MainScreen" component={MainScreen} />
-        <Stack.Screen name="CameraScreen" component={CameraScreen} />
+        <Stack.Screen name="MainScreen" component={MainScreen} options={{title: '포켓몬 씰 수집북'}}/>
+        <Stack.Screen name="CameraScreen" component={CameraScreen} options={{title: '사진 촬영'}}/>
         <Stack.Screen name="CollectionScreen" component={CollectionScreen} options={{title: '포켓몬 수집함'}}/>
         <Stack.Screen name="SelectPoketmonScreen" component={SelectPoketmonScreen} options={{title: '포켓몬 선택하기'}} />
       </Stack.Navigator>

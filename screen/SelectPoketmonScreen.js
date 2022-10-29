@@ -20,7 +20,7 @@ import CameraScreen from "./CameraScreen";
 import CollectionScreen from "./CollectionScreen";
 import RNPickerSelect from "react-native-picker-select";
 import Buttons from "../utils/form/Buttons";
-import { ref, uploadBytes } from "firebase/storage";
+// import { ref, uploadBytes, getStorage } from "firebase/storage";
 
 
 const SelectPoketmonScreen = ({ navigation, route }) => {
@@ -28,6 +28,8 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
   const [data, setData] = useState([]);
   const [selectData, setSelectData] = useState([]);
   const placeholder = "포켓몬을 지정해주세요!";
+
+  // const storage = getStorage();
 
   const getPoketmonsterApiAsync = async () => {
     try {
@@ -84,20 +86,7 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
   //   blob.close();
   // }
 
-  // const uploadImage = async (uri) => {
-  //   const storageRef = ref(storage, uri);
-
-  //   try {
-  //     await uploadBytes(storageRef, file, {
-  //       contentType: "image/jpeg",
-  //     });
-  //     console.log("Succuess!!")
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-//firebase storage로 포켓몬 사진 보내고 저장하기 - 2번째 예시
+// //firebase storage로 포켓몬 사진 보내고 저장하기 - 2번째 예시
 //   const uploadImage = async (uri) => {
 //     const response = await fetch(uri);
 //     const blob = await response.blob();
@@ -112,6 +101,19 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
 //     console.log("Success!");
 //     console.log(filename);
 // };
+
+      // const uploadImage = async (uri) => {
+      //   const storageRef = ref(storage, uri);
+
+      //   try {
+      //     await uploadBytes(storageRef, file, {
+      //       contentType: "image/jpeg",
+      //     });
+      //     console.log("Succuess!!")
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      // };
 
 
   useEffect(() => {
@@ -138,7 +140,7 @@ const SelectPoketmonScreen = ({ navigation, route }) => {
 
       <Buttons
         onPress={() =>
-          savePoketmon().then(uploadImage(uri).then(navigation.navigate("CollectionScreen")))
+          savePoketmon().then(navigation.navigate("CollectionScreen"))
         }
         type={2}
       >
